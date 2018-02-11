@@ -8,9 +8,12 @@ import (
 	"os"
 )
 
+// Request
 type Request struct {
 }
 
+
+// Response
 type Response struct {
 	StatusCode float64 `json:"statusCode"`
 	Headers    Headers 	`json:"headers"`
@@ -18,20 +21,25 @@ type Response struct {
 	IsBase64Encoded bool `json:"isBase64Encoded"`
 }
 
+// TennisCourtCoordicatesOnly
 type TennisCourtCoordicatesOnly struct {
 	ID int `json:"id"`
 	Coordinates Coordinates `json:"coordinates"`
 }
 
+
+// Coordinates
 type Coordinates struct{
 	X float64 `json:"x"`
 	Y float64 `json:"y"`
 }
 
+// Headers
 type Headers struct {
 	ContentType string `json:"Content-Type"`
 }
 
+// toJSON
 func toJson(p interface{}) string{
 	bytes, err := json.Marshal(p)
 	if err != nil {
@@ -42,6 +50,8 @@ func toJson(p interface{}) string{
 	return string(bytes)
 }
 
+
+// GetTennisCourts
 func GetTennisCourts()[]TennisCourtCoordicatesOnly {
 	raw, err := ioutil.ReadFile("courts.json")
 	if err != nil {
@@ -52,6 +62,8 @@ func GetTennisCourts()[]TennisCourtCoordicatesOnly {
 	json.Unmarshal(raw,&t)
 	return t
 }
+
+// Handler
 func Handler(request Request)(Response, error){
 	b := GetTennisCourts()
 	r := Response{
