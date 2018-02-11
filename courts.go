@@ -40,7 +40,7 @@ type Headers struct {
 }
 
 // toJSON
-func toJson(p interface{}) string{
+func toJSON(p interface{}) string{
 	bytes, err := json.Marshal(p)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -69,7 +69,7 @@ func Handler(request Request)(Response, error){
 	r := Response{
 		StatusCode: 200,
 		Headers: Headers{ContentType:"application/json"},
-		Body: toJson(b),
+		Body: toJSON(b),
 		IsBase64Encoded: false,
 	}
 	return r,nil
