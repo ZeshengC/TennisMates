@@ -33,5 +33,8 @@ relative/path/to/dir/anotherfile
 # Ignore .DS_Store
 *.DS_Store
 
-* Igore .zip file
+# Igore .zip file
 *.zip
+
+# Ignore exe file
+*.exe
